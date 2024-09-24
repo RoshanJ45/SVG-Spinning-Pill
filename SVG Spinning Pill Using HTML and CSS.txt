@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        :root {
+            --animation-speed: 10s;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100dvh;
+            background-color: #263238;
+            margin: 0;
+        }
+        .pill {
+            height: 20rem;
+            width: 20rem;
+            .capsule, .shadow {
+                x: 31%;
+                y: 11%;
+                rx: 58;
+                width: 38%;
+                height: 78%;
+                fill: url(#capsule);
+                transform-origin: center;
+                animation: spin var(--animation-speed) linear infinite reverse;
+            }
+            .shadow {
+                fill: #000;
+                filter: blur(0.3rem);
+                opacity: 0.15;
+                animation: shadow-spin var(--animation-speed) linear infinite reverse;
+            }
+            .specular {
+                x: 35%;
+                y: 15%;
+                rx: 50;
+                width: 30%;
+                height: 70%;
+                fill: transparent;
+                stroke: #fff;
+                stroke-width: 1rem;
+                stroke-linecap: round;
+                stroke-dasharray: 100 455;
+                stroke-dashoffset: 100;
+                transform-origin: center;
+                animation: specular-spin var(--animation-speed) linear infinite reverse;
+            }
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(-360deg);
+            }
+        }
+        @keyframes shadow-spin {
+            from {
+                transform: translate(1rem, 1rem) rotate(0deg);
+            }
+            to {
+                transform: translate(1rem, 1rem) rotate(-360deg);
+            }
+        }
+        @keyframes specular-spin {
+            from {
+                stroke-dashoffset: 100;
+                transform: rotate(0deg);
+            }
+            to {
+                stroke-dashoffset: -455;
+                transform: rotate(-360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="pill" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <linearGradient id="capsule" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="50%" stop-color="#044be3" />
+                <stop offset="50%" stop-color="#eee" />
+            </linearGradient>
+        </defs>
+        <rect class="shadow" />
+        <rect class="capsule" />
+        <rect class="specular" />
+    </svg>
+</body>
+</html>
